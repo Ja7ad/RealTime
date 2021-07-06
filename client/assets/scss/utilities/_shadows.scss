@@ -1,0 +1,80 @@
+// stylelint-disable declaration-no-important
+
+//.shadow-sm { box-shadow: $box-shadow-sm !important; }
+//.shadow { box-shadow: $box-shadow !important; }
+//.shadow-lg { box-shadow: $box-shadow-lg !important; }
+//.shadow-none { box-shadow: none !important; }
+
+
+// call it
+
+//  ls = Low Shadow
+.ls {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      @include material-shadow($card: $i);
+    }
+  }
+}
+
+//  ms = Medium Shadow
+
+.ms {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      @include material-shadow($card: $i, $strength: 2);
+    }
+  }
+}
+
+//  hs = High Shadow
+
+.hs {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      @include material-shadow($card: $i, $strength: 3);
+    }
+  }
+}
+
+//  ls-h = Low Shadow On Hover
+
+.ls-h {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      transition: all .3s ease-out;
+      &:hover {
+        transform: translateY(-.1em);
+        @include material-shadow($card: $i);
+      }
+    }
+  }
+}
+
+//  ms-h = Medium Shadow On Hover
+
+.ms-h {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      transition: all .3s ease-out;
+      &:hover {
+        transform: translateY(-.1em);
+        @include material-shadow($card: $i, $strength: 2);
+      }
+    }
+  }
+}
+
+//  hs-h = High Shadow On Hover
+
+.hs-h {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      transition: all .3s ease-out;
+      &:hover {
+        transform: translateY(-.1em);
+        @include material-shadow($card: $i, $strength: 3);
+      }
+    }
+  }
+}

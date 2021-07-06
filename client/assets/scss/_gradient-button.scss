@@ -1,0 +1,56 @@
+.btn.purple-gradient {
+  background: -webkit-linear-gradient(50deg, #ff6ec4, #7873f5);
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  -webkit-transition: .5s ease;
+  transition: .5s ease
+}
+.btn.purple-gradient:active, .btn.purple-gradient:active:focus,.btn.purple-gradient.active, .btn.purple-gradient:focus, .btn.purple-gradient:hover {
+  background: -webkit-linear-gradient(50deg, #ff88ce, #8f8bf7);
+  background: linear-gradient(40deg, #ff88ce, #8f8bf7)
+}
+.btn.peach-gradient {
+  background: -webkit-linear-gradient(50deg, #FFD86F, #FC6262);
+  background: linear-gradient(40deg, #FFD86F, #FC6262);
+  -webkit-transition: .5s ease;
+  transition: .5s ease
+}
+.btn.peach-gradient:active, .btn.peach-gradient:active:focus,.btn.peach-gradient.active, .btn.peach-gradient:focus, .btn.peach-gradient:hover {
+  background: -webkit-linear-gradient(50deg, #ffdf89, #fc7b7b);
+  background: linear-gradient(40deg, #ffdf89, #fc7b7b)
+}
+.btn.aqua-gradient {
+  background: -webkit-linear-gradient(50deg, #2096ff, #05ffa3);
+  background: linear-gradient(40deg, #2096ff, #05ffa3);
+  -webkit-transition: .5s ease;
+  transition: .5s ease
+}
+.btn.aqua-gradient:active, .btn.aqua-gradient:active:focus,.btn.aqua-gradient.active, .btn.aqua-gradient:focus, .btn.aqua-gradient:hover {
+  background: -webkit-linear-gradient(50deg, #3aa2ff, #1fffac);
+  background: linear-gradient(40deg, #3aa2ff, #1fffac)
+}
+.btn.blue-gradient {
+  background: -webkit-linear-gradient(50deg, #45cafc, #303f9f);
+  background: linear-gradient(40deg, #45cafc, #303f9f);
+  -webkit-transition: .5s ease;
+  transition: .5s ease
+}
+.btn.blue-gradient:active, .btn.blue-gradient:active:focus,.btn.blue-gradient.active, .btn.blue-gradient:focus, .btn.blue-gradient:hover {
+  background: -webkit-linear-gradient(50deg, #5ed1fc, #3647b3);
+  background: linear-gradient(40deg, #5ed1fc, #3647b3)
+}
+.purple-gradient {
+  background: -webkit-linear-gradient(50deg, #ff6ec4, #7873f5);
+  background: linear-gradient(40deg, #ff6ec4, #7873f5)
+}
+.peach-gradient {
+  background: -webkit-linear-gradient(50deg, #FFD86F, #FC6262);
+  background: linear-gradient(40deg, #FFD86F, #FC6262)
+}
+.aqua-gradient {
+  background: -webkit-linear-gradient(50deg, #2096ff, #05ffa3);
+  background: linear-gradient(40deg, #2096ff, #05ffa3)
+}
+.blue-gradient {
+  background: -webkit-linear-gradient(50deg, #45cafc, #303f9f);
+  background: linear-gradient(40deg, #45cafc, #303f9f)
+}

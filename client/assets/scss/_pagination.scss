@@ -1,0 +1,90 @@
+.pagination {
+  display: flex;
+  @include list-unstyled();
+  @include border-radius();
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: $pagination-padding-y $pagination-padding-x;
+  margin-left: -$pagination-border-width;
+  line-height: $pagination-line-height;
+  color: $pagination-color;
+  //background-color: $pagination-bg;
+  background-color: transparent;
+  //border: $pagination-border-width solid $pagination-border-color;
+  border: none;
+
+  &:hover {
+    z-index: 2;
+    color: $pagination-hover-color;
+    text-decoration: none;
+    //background-color: $pagination-hover-bg;
+    background-color: $white;
+    border-color: $pagination-hover-border-color;
+  }
+
+  &:focus {
+    z-index: 2;
+    outline: $pagination-focus-outline;
+    box-shadow: $pagination-focus-box-shadow;
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .page-link elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+}
+
+.page-item {
+  border: none;
+  margin: $spacer * .4;
+  &:first-child {
+    .page-link {
+      border: none;
+
+      margin-left: 0;
+      @include border-left-radius($border-radius);
+    }
+  }
+  &:last-child {
+    .page-link {
+      border: none;
+
+      @include border-right-radius($border-radius);
+    }
+  }
+
+  &.active .page-link {
+    @include material-shadow(2);
+    border: none;
+    z-index: 1;
+    color: $pagination-active-color;
+    background-color: $pagination-active-bg;
+    //border-color: $pagination-active-border-color;
+  }
+
+  &.disabled .page-link {
+    border: none;
+    color: $pagination-disabled-color;
+    pointer-events: none;
+    // Opinionated: emove the "hand" cursor set previously for .page-link
+    cursor: auto;
+    //background-color: $pagination-disabled-bg;
+    background-color: transparent;
+    //border-color: $pagination-disabled-border-color;
+  }
+}
+
+//
+// Sizing
+//
+
+.pagination-lg {
+  @include pagination-size($pagination-padding-y-lg, $pagination-padding-x-lg, $font-size-lg, $line-height-lg, $border-radius-lg);
+}
+
+.pagination-sm {
+  @include pagination-size($pagination-padding-y-sm, $pagination-padding-x-sm, $font-size-sm, $line-height-sm, $border-radius-sm);
+}

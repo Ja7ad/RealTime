@@ -1,0 +1,10 @@
+// stylelint-disable declaration-no-important
+
+// Scroll
+
+@mixin scroll-emphasis-variant($parent, $color) {
+  #{$parent}::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: $border-radius-lg;
+  }
+}

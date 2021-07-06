@@ -1,0 +1,22 @@
+// Scroll Body
+
+
+
+::-webkit-scrollbar {
+  width: $spacer * .6;
+}
+.sm-scroll::-webkit-scrollbar {
+  width: $spacer * .3;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $golden;
+  border-radius: $border-radius;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+// Scroll colors
+
+@each $color, $value in $theme-colors {
+  @include scroll-emphasis-variant(".scroll-#{$color}", $value);
+}

@@ -1,0 +1,443 @@
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Base styles
+//
+
+.btn {
+  //border-width: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: $btn-border-width solid transparent;
+  -webkit-transition: all 0.5s cubic-bezier(0.02, 0.01, 0.47, 1);
+  transition: all 0.5s cubic-bezier(0.02, 0.01, 0.47, 1);
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+  @include transition($btn-transition);
+
+  // Share hover and focus styles
+  @include hover-focus {
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    @include box-shadow(none);
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    background-image: none;
+    @include box-shadow($btn-active-box-shadow);
+
+    &:focus {
+      @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+    }
+  }
+}
+
+.btn-fill {
+  z-index: 0;
+  //border: none;
+  //-webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //@include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+
+  // Share hover and focus styles
+  //@include hover-focus {
+  //  text-decoration: none;
+  //}
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease-out, -webkit-transform 0.2s ease-out;
+    transition: opacity 0.2s ease-out, -webkit-transform 0.2s ease-out;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out, -webkit-transform 0.2s ease-out;
+    z-index: -1;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+
+  &:hover,
+  &:focus {
+    outline: 0;
+    box-shadow: 0 1px 8px rgba(58, 51, 53, 0.3);
+    //-webkit-transition: all 0.5s cubic-bezier(0.02, 0.01, 0.47, 1);
+    //transition: all 0.5s cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+
+  &:hover:before,
+  &:focus:before {
+    opacity: 1;
+    -webkit-transition: opacity .2s ease-in, -webkit-transform .2s ease-in;
+    transition: opacity .2s ease-in, -webkit-transform .2s ease-in;
+    transition: transform .2s ease-in, opacity .2s ease-in;
+    transition: transform .2s ease-in, opacity .2s ease-in, -webkit-transform .2s ease-in;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  //
+  //&:not(:disabled):not(.disabled):active,
+  //&:not(:disabled):not(.disabled).active {
+  //  background-image: none;
+  //  @include box-shadow($btn-active-box-shadow);
+  //
+  //  &:focus {
+  //    @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+  //  }
+  //}
+}
+
+.btn-stretch {
+  overflow: hidden;
+  //border-width: 0;
+  //border-radius: 0;
+  color: #fff;
+  //-webkit-transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //@include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+
+  &:before ,
+  &:after
+  {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: $border-width;
+    background: currentColor;
+    content: '';
+    opacity: 0.65;
+    -webkit-transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+
+  &:after{
+    top: 0;
+  }
+
+  &:before{
+    bottom: 0;
+  }
+
+  // Share hover and focus styles
+  @include hover-focus {
+    text-decoration: none;
+    outline: none;
+    opacity: .9;
+    //-webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    //transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+
+    &:after,
+    &:before
+    {
+      opacity: 1;
+      -webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+}
+
+.btn-jelly {
+  overflow: hidden;
+  border-radius: 100vh;
+  //-webkit-transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //@include button-size-circle($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height);
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100vh;
+    background: currentColor;
+    content: '';
+    z-index: -1;
+    opacity: 0;
+    -webkit-transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+  }
+
+  // Share hover and focus styles
+
+  @include hover-focus {
+    text-decoration: none;
+    box-shadow: 0 1px 8px rgba(58, 51, 53, 0.4);
+    -webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+
+    &:before {
+      opacity: 0.15;
+      -webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+
+  }
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  //
+  //&:not(:disabled):not(.disabled):active,
+  //&:not(:disabled):not(.disabled).active {
+  //  background-image: none;
+  //  @include box-shadow($btn-active-box-shadow);
+  //
+  //  &:focus {
+  //    @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+  //  }
+  //}
+}
+//No Rounded For Btn Jelly If Selected
+.no-rounded:before {
+  border-radius: 0;
+}
+
+
+.btn-unite {
+  z-index: 0;
+  overflow: hidden;
+  //border: $border-width solid #1d89ff;
+  //border:none;
+  border-radius: $border-width * 100;
+  //background: #fff;
+  background-color: transparent;
+  color: #1d89ff;
+  //-webkit-transition: color 0.3s cubic-bezier(0.02, 0.01, 0.47, 1), border-color 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //transition: color 0.3s cubic-bezier(0.02, 0.01, 0.47, 1), border-color 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+  //@include button-size-circle($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height);
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: #d6e3ff;
+    content: '';
+    opacity: 0;
+    z-index: -1;
+    -webkit-transition: opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    -webkit-transform: translate3d(-110%, -10%, 0) skewX(-20deg);
+    transform: translate3d(-110%, -10%, 0) skewX(-20deg);
+  }
+  &:after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: rgba(214, 227, 255, 0.7);
+    content: '';
+    opacity: 0;
+    z-index: -1;
+    -webkit-transition: opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    -webkit-transform: translate3d(110%, -10%, 0) skewX(-20deg);
+    transform: translate3d(110%, -10%, 0) skewX(-20deg);
+  }
+  // Share hover and focus styles
+
+  @include hover-focus {
+    text-decoration: none;
+    @include material-shadow(1);
+    color: #1d89ff;
+    -webkit-transition: all 0.5s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 0.5s cubic-bezier(0.02, 0.01, 0.47, 1);
+
+    &:before {
+      opacity: 1;
+      -webkit-transition: opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      -webkit-transform: translate3d(-50%, -10%, 0) skewX(-20deg);
+      transform: translate3d(-49%, -10%, 0) skewX(-20deg);
+    }
+    &:after{
+      opacity: 1;
+      -webkit-transition: opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.25s cubic-bezier(0.02, 0.01, 0.47, 1), -webkit-transform 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+      -webkit-transform: translate3d(50%, -10%, 0) skewX(-20deg);
+      transform: translate3d(50%, -10%, 0) skewX(-20deg);
+    }
+  }
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  //
+  //&:not(:disabled):not(.disabled):active,
+  //&:not(:disabled):not(.disabled).active {
+  //  background-image: none;
+  //  @include box-shadow($btn-active-box-shadow);
+  //
+  //  &:focus {
+  //    @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+  //  }
+  //}
+}
+
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+//
+// Alternate buttons
+//
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-fill-#{$color} {
+    @include button-fill-variant($value, $value);
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-stretch-#{$color} {
+    @include button-stretch-variant($value);
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-jelly-#{$color} {
+    @include button-jelly-variant($value);
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-unite-#{$color} {
+    @include button-unite-variant($value);
+  }
+}
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  background-color: transparent;
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  }
+
+  // No need for an active state here
+}
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+}
+
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+}
+
+//
+// Block button
+//
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}

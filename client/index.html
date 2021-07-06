@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Site Statistics with websocket</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/customCss.css" />
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card text-black m-3">
+            <div class="card-header bg-info text-white">Site Statistics</div>
+            <div class="card-body">
+                <table class="table" id="Sites">
+                    <tr>
+                        <td>Site Address</th>
+                        <td>Site Name</th>
+                        <td>Online Users</th>
+                    </tr>
+                    <tr class="siteRow">
+                        <td class="siteName">gofiber.io</td>
+                        <td>gofiber site</td>
+                        <td class="count">0</td>
+                    </tr>
+                    <tr class="siteRow">
+                        <td class="siteName">www.gorillatoolkit.org</td>
+                        <td>gorilla toolkit site</td>
+                        <td class="count">0</td>
+                    </tr>
+                    <tr class="siteRow">
+                        <td class="siteName">example.com</td>
+                        <td>example site</td>
+                        <td class="count">0</td>
+                    </tr>
+                    <tr class="siteRow">
+                        <td class="siteName">javad.tech</td>
+                        <td>javad profilo site</td>
+                        <td class="count">0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(".siteRow").each(function () {
+            var siteName = $(this).find("td.siteName");
+            var count = $(this).find("td.count");
+debugger;
+            var socket = new WebSocket("ws://localhost:2345/ws");
+
+            socket.onopen = function () {
+                socket.send(siteName.text());
+                socket.onmessage = function (result) {
+                    var message = JSON.parse(result.data);
+                    console.log(message);
+
+                    count.text(message.Count)
+                };
+            };
+        });
+
+    </script>
+</body>
+
+</html>
